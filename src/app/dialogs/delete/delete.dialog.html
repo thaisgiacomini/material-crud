@@ -3,16 +3,28 @@
   <div mat-dialog-content>
     Id: {{data.id}}
     <p></p>
-    Title: {{data.title}}
+    Title: {{data.empresa}}
     <p></p>
-    State: {{data.state}}
+    State: {{data.dateAdesao}}
     <p></p>
-    Url: {{data.url}}
+    Url: {{data.tarifa}}
+    <p></p>
+    Url: {{data.plano}}
+    <p></p>
+    Url: {{data.cnpj}}
+    <p></p>
+    Url: {{data.cplano}}
+    <p></p>
+    Url: {{data.minutos}}
+    <p></p>
+    Url: {{data.created_at}}
     <p></p>
   </div>
 
   <div mat-dialog-actions>
-    <button mat-button [mat-dialog-close]="1" (click)="confirmDelete()">Delete</button>
+    <button mat-button [mat-dialog-close]="1" (click)="confirmDelete()">
+      Delete
+    </button>
     <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
   </div>
 </div>

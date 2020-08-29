@@ -1,7 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/theming';
 @import url('//fonts.googleapis.com/icon?family=Material+Icons');
 
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
 @include mat-core();
 
 $primary: mat-palette($mat-indigo, 500);
@@ -19,4 +20,16 @@ body {
   font-weight: normal;
   margin: 0;
 }
+
+.img{
+  width:5%;
+}
+.img_menu{
+  width:13%;
+}
+.mat-primary-background{
+
+  background-color:#F7EDEB;
+  }
+
 

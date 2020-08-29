@@ -1,17 +1,16 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
-import {Issue} from '../models/issue';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import { Injectable } from "@angular/core";
+import { BehaviorSubject } from "rxjs";
+import { Issue } from "../models/issue";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 
 @Injectable()
 export class DataService {
-  private readonly API_URL = 'https://api.github.com/repos/angular/angular/issues';
+  private readonly API_URL = "https://agdo-server.appspot.com/solicitacoes/";
 
   dataChange: BehaviorSubject<Issue[]> = new BehaviorSubject<Issue[]>([]);
-  // Temporarily stores data from dialogs
   dialogData: any;
 
-  constructor (private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {}
 
   get data(): Issue[] {
     return this.dataChange.value;
@@ -23,29 +22,29 @@ export class DataService {
 
   /** CRUD METHODS */
   getAllIssues(): void {
-    this.httpClient.get<Issue[]>(this.API_URL).subscribe(data => {
+    this.httpClient.get<Issue[]>(this.API_URL).subscribe(
+      (data) => {
         this.dataChange.next(data);
       },
       (error: HttpErrorResponse) => {
-      console.log (error.name + ' ' + error.message);
-      });
+        console.log(error.name + " " + error.message);
+      }
+    );
   }
 
   // DEMO ONLY, you can find working methods below
-  addIssue (issue: Issue): void {
+  addIssue(issue: Issue): void {
     this.dialogData = issue;
   }
 
-  updateIssue (issue: Issue): void {
+  updateIssue(issue: Issue): void {
     this.dialogData = issue;
   }
 
-  deleteIssue (id: number): void {
+  deleteIssue(id: number): void {
     console.log(id);
   }
 }
-
-
 
 /* REAL LIFE CRUD Methods I've used in my projects. ToasterService uses Material Toasts for displaying messages:
 
@@ -84,7 +83,3 @@ export class DataService {
     );
   }
 */
-
-
-
-

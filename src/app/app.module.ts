@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 
 import { AppComponent } from './app.component';
@@ -18,6 +19,7 @@ import {EditDialogComponent} from './dialogs/edit/edit.dialog.component';
 import {DeleteDialogComponent} from './dialogs/delete/delete.dialog.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -25,8 +27,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     AppComponent,
     AddDialogComponent,
     EditDialogComponent,
-    DeleteDialogComponent
-  ],
+    DeleteDialogComponent  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -40,7 +41,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MatTableModule,
     MatToolbarModule,
     MatPaginatorModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   entryComponents: [
     AddDialogComponent,
@@ -48,8 +50,20 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     DeleteDialogComponent
   ],
   providers: [
-    DataService
+    DataService,
+
+//     { 
+// provide: MatDialogRef,
+// useValue: []
+//  }, 
+// { 
+// provide: MAT_DIALOG_DATA, 
+// useValue: [] 
+// }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [AddDialogComponent,
+    EditDialogComponent,
+    DeleteDialogComponent]
 })
 export class AppModule { }

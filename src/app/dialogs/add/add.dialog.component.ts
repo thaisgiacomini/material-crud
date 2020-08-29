@@ -21,13 +21,12 @@ export class AddDialogComponent {
   ]);
 
   getErrorMessage() {
-    return this.formControl.hasError('required') ? 'Required field' :
-      this.formControl.hasError('email') ? 'Not a valid email' :
+    return this.formControl.hasError('required') ? 'Campo Obrigatório' :
+      this.formControl.hasError('email') ? 'Não é um email válido' :
         '';
   }
 
   submit() {
-  // emppty stuff
   }
 
   onNoClick(): void {

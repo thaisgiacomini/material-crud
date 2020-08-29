@@ -4,7 +4,7 @@ import {DataService} from '../../services/data.service';
 import {FormControl, Validators} from '@angular/forms';
 
 @Component({
-  selector: 'app-baza.dialog',
+  selector: 'app-edit',
   templateUrl: '../../dialogs/edit/edit.dialog.html',
   styleUrls: ['../../dialogs/edit/edit.dialog.css']
 })
