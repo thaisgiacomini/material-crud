@@ -1,13 +1,13 @@
-@import '~@angular/material/theming';
-@import url('//fonts.googleapis.com/icon?family=Material+Icons');
+@import "~@angular/material/theming";
+@import url("//fonts.googleapis.com/icon?family=Material+Icons");
 
 /* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 @include mat-core();
 
 $primary: mat-palette($mat-indigo, 500);
-$accent:  mat-palette($mat-pink, 500, A200, A400);
-$warn:    mat-palette($mat-red, 500);
+$accent: mat-palette($mat-pink, 500, A200, A400);
+$warn: mat-palette($mat-red, 500);
 
 $config: mat-typography-config();
 
@@ -20,16 +20,12 @@ body {
   font-weight: normal;
   margin: 0;
 }
-
-.img{
-  width:5%;
+.container {
+  display: flex;
+  flex-direction: column;
+  min-width: 450px;
 }
-.img_menu{
-  width:13%;
+
+.container > * {
+  width: 100%;
 }
-.mat-primary-background{
-
-  background-color:#F7EDEB;
-  }
-
-

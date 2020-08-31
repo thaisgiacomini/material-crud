@@ -21,24 +21,25 @@ export class AppComponent implements OnInit {
   displayedColumns = [
     "id",
     "empresa",
-    "tarifa",
     "plano",
-    "cnpj",
-    "vplano",
+    "tarifa",
     "minutos",
-    "created_at",
+    "vplano",
+    "adesao",
+    "envio",
     "actions",
   ];
   novaDatabase: DataService | null;
   dataSource: NovaDataSource | null;
   index: number;
   id: number;
+  _id: number;
 
   constructor(
     public httpClient: HttpClient,
     public dialog: MatDialog,
     public dataService: DataService
-  ) {}
+  ) { }
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -55,6 +56,7 @@ export class AppComponent implements OnInit {
   addNew() {
     const dialogRef = this.dialog.open(AddDialogComponent, {
       data: { issue: Issue },
+
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -72,31 +74,34 @@ export class AppComponent implements OnInit {
   startEdit(
     i: number,
     id: number,
-    // title: string,
-    // state: string,
-    // url: string,
-    created_at: string,
+    _id: number,
     empresa: string,
     tarifa: string,
     plano: string,
     cnpj: string,
     vplano: string,
-    minutos: string
+    minutos: string,
+    envio: string,
+    adesao: string
+
   ) {
-    this.id = id;
+    // this.id = id;
+    this._id = _id;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
     console.log(this.index);
     const dialogRef = this.dialog.open(EditDialogComponent, {
       data: {
         id: id,
+        _id: _id,
         empresa: empresa,
         tarifa: tarifa,
         plano: plano,
-        created_at: created_at,
         cnpj: cnpj,
         vplano: vplano,
         minutos: minutos,
+        envio: envio,
+        adesao: adesao,
       },
     });
 
@@ -104,7 +109,7 @@ export class AppComponent implements OnInit {
       if (result === 1) {
         // When using an edit things are little different, firstly we find record inside DataService by id
         const foundIndex = this.novaDatabase.dataChange.value.findIndex(
-          (x) => x.id === this.id
+          (x) => x._id === this._id
         );
         // Then you update that record using data from dialogData (values you enetered)
         this.novaDatabase.dataChange.value[
@@ -119,35 +124,44 @@ export class AppComponent implements OnInit {
   deleteItem(
     i: number,
     id: number,
+    _id: number,
     empresa: string,
     tarifa: string,
     plano: string,
     cnpj: string,
     vplano: string,
-    minutos: string
+    minutos: string,
+    adesao: string,
+    envio: string
   ) {
     this.index = i;
-    this.id = id;
+    this._id = _id;
+    console.log(this._id);
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
       data: {
         id: id,
+        _id: _id,
         empresa: empresa,
         tarifa: tarifa,
         plano: plano,
         cnpj: cnpj,
         vplano: vplano,
-        tarminutosifa: minutos,
+        minutos: minutos,
+        envio: envio,
+        adesao: adesao,
       },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {
         const foundIndex = this.novaDatabase.dataChange.value.findIndex(
-          (x) => x.id === this.id
+          (x) => x._id === this._id
+
         );
-        // for delete we use splice in order to remove single object from DataService
+
         this.novaDatabase.dataChange.value.splice(foundIndex, 1);
         this.refreshTable();
+        console.log(this._id)
       }
     });
   }
@@ -195,6 +209,8 @@ export class AppComponent implements OnInit {
 }
 
 export class NovaDataSource extends DataSource<Issue> {
+
+  dataSource: NovaDataSource | null;
   _filterChange = new BehaviorSubject("");
 
   get filter(): string {
@@ -223,6 +239,7 @@ export class NovaDataSource extends DataSource<Issue> {
     // Listen for any changes in the base data, sorting, filtering, or pagination
     const displayDataChanges = [
       this.novaDatabase.dataChange,
+
       this._sort.sortChange,
       this._filterChange,
       this._paginator.page,
@@ -230,20 +247,13 @@ export class NovaDataSource extends DataSource<Issue> {
 
     this.novaDatabase.getAllIssues();
 
+
     return merge(...displayDataChanges).pipe(
       map(() => {
         // Filter data
         this.filteredData = this.novaDatabase.data
+
           .slice()
-          .filter((issue: Issue) => {
-            const searchStr = (
-              issue.id +
-              issue.empresa +
-              issue.cnpj +
-              issue.created_at
-            ).toLowerCase();
-            return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
-          });
 
         // Sort filtered data
         const sortedData = this.sortData(this.filteredData.slice());
@@ -259,7 +269,7 @@ export class NovaDataSource extends DataSource<Issue> {
     );
   }
 
-  disconnect() {}
+  disconnect() { }
 
   /** Returns a sorted copy of the database data. */
   sortData(data: Issue[]): Issue[] {
@@ -272,23 +282,19 @@ export class NovaDataSource extends DataSource<Issue> {
       let propertyB: number | string = "";
 
       switch (this._sort.active) {
-        case "id":
-          [propertyA, propertyB] = [a.id, b.id];
+
+
+        case "empresa":
+          [propertyA, propertyB] = [a.empresa, b.empresa];
           break;
-        case "title":
-          [propertyA, propertyB] = [a.title, b.title];
+        case "plano":
+          [propertyA, propertyB] = [a.plano, b.plano];
           break;
-        case "state":
-          [propertyA, propertyB] = [a.state, b.state];
+        case "adesao":
+          [propertyA, propertyB] = [a.adesao, b.adesao];
           break;
-        case "url":
-          [propertyA, propertyB] = [a.url, b.url];
-          break;
-        case "created_at":
-          [propertyA, propertyB] = [a.created_at, b.created_at];
-          break;
-        case "updated_at":
-          [propertyA, propertyB] = [a.updated_at, b.updated_at];
+        case "envio":
+          [propertyA, propertyB] = [a.envio, b.envio];
           break;
       }
 

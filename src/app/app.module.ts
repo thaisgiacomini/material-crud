@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 
 import { AppComponent } from './app.component';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,13 +13,14 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {DataService} from './services/data.service';
-import {AddDialogComponent} from './dialogs/add/add.dialog.component';
-import {EditDialogComponent} from './dialogs/edit/edit.dialog.component';
-import {DeleteDialogComponent} from './dialogs/delete/delete.dialog.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { DataService } from './services/data.service';
+import { AddDialogComponent } from './dialogs/add/add.dialog.component';
+import { EditDialogComponent } from './dialogs/edit/edit.dialog.component';
+import { DeleteDialogComponent } from './dialogs/delete/delete.dialog.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppComponent,
     AddDialogComponent,
     EditDialogComponent,
-    DeleteDialogComponent  ],
+    DeleteDialogComponent,
+    NavbarComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -52,14 +54,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   providers: [
     DataService,
 
-//     { 
-// provide: MatDialogRef,
-// useValue: []
-//  }, 
-// { 
-// provide: MAT_DIALOG_DATA, 
-// useValue: [] 
-// }
+    //     { 
+    // provide: MatDialogRef,
+    // useValue: []
+    //  }, 
+    // { 
+    // provide: MAT_DIALOG_DATA, 
+    // useValue: [] 
+    // }
   ],
   bootstrap: [AppComponent],
   exports: [AddDialogComponent,

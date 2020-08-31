@@ -1,62 +1,62 @@
 <div class="container">
-  <h3 mat-dialog-title>Issue id: {{data.id}}</h3>
+  <div class="col-lg-12">
+    <h3 mat-dialog-title>Contrato id:{{data.id}}</h3>
 
-  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
 
-    <div class="form">
-      <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Id" [(ngModel)]="data.id" name="id" required >
-        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
-    </div>
+    <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
 
-    <div class="form">
-      <mat-form-field color="accent">
-        <textarea matInput #input class="form-control" placeholder="Empresa" [(ngModel)]="data.empresa" name="empresa" required ></textarea>
-        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
-    </div>
 
-    <div class="form">
-      <mat-form-field color="accent">
-        <input matInput #inputstate class="form-control" placeholder="Tarifa" [(ngModel)]="data.tarifa" name="tarifa" maxlength="10" required >
-        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        <mat-hint align="end">{{inputstate.value?.length || 0}}/10</mat-hint>
-      </mat-form-field>
-    </div>
 
-    <div class="form">
+      <div class="form">
         <mat-form-field color="accent">
-          <input matInput placeholder="Plano" [(ngModel)]="data.plano" name="plano">
+          <input matInput placeholder="Empresa" [(ngModel)]="data.empresa" name="empresa" required />
         </mat-form-field>
-    </div>
-      <div class="form">
-      <mat-form-field color="accent">
-        <input matInput placeholder="UCnpj" [(ngModel)]="data.cnpj" name="cnpj">
-      </mat-form-field>
-    </div>
-      <div class="form">
-      <mat-form-field color="accent">
-        <input matInput placeholder="Valor Plano" [(ngModel)]="data.vplano" name="vplano">
-      </mat-form-field>
-    </div>
-      <div class="form">
-      <mat-form-field color="accent">
-        <input matInput placeholder="Minutos" [(ngModel)]="data.minutos" name="minutos">
-      </mat-form-field>
-    </div>
+      </div>
 
-    <div class="form">
-      <mat-form-field color="accent">
-        <input matInput placeholder="Data Emissão" [(ngModel)]="data.created_at" name="created_at">
-      </mat-form-field>
-    </div>
 
-  
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput placeholder="Tarifa" [(ngModel)]="data.tarifa" name="tarifa" />
+        </mat-form-field>
+      </div>
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput placeholder="Plano" [(ngModel)]="data.plano" name="plano" />
+        </mat-form-field>
+      </div>
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput placeholder="CNPJ" [(ngModel)]="data.cnpj" name="cnpj" required />
+        </mat-form-field>
+      </div>
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput placeholder="Valor Plano" [(ngModel)]="data.vplano" name="vplano" />
+        </mat-form-field>
+      </div>
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput placeholder="Minutos" [(ngModel)]="data.minutos" name="minutos" />
+        </mat-form-field>
+      </div>
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput placeholder="Data Adesao" type="date" [(ngModel)]="data.adesao" name="adesao" />
+        </mat-form-field>
+      </div>
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput placeholder="Data Envio" type="date" [(ngModel)]="data.envio" name="envio" />
+        </mat-form-field>
+      </div>
 
-    <div mat-dialog-actions>
-      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="stopEdit()">Save</button>
-      <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
-    </div>
-  </form>
-</div>
+
+
+
+      <div mat-dialog-actions>
+        <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"
+          (click)="stopEdit()">Salvar</button>
+        <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+      </div>
+    </form>
+  </div>

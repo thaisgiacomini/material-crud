@@ -1,7 +1,13 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
 import { Issue } from "../models/issue";
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { Observable, of, throwError, BehaviorSubject } from 'rxjs';
+
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders
+} from '@angular/common/http';
+import { catchError, tap, map } from 'rxjs/operators';
 
 @Injectable()
 export class DataService {
@@ -9,8 +15,13 @@ export class DataService {
 
   dataChange: BehaviorSubject<Issue[]> = new BehaviorSubject<Issue[]>([]);
   dialogData: any;
+  issue: any;
 
-  constructor(private httpClient: HttpClient) {}
+
+  constructor(private httpClient: HttpClient) { }
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
   get data(): Issue[] {
     return this.dataChange.value;
@@ -32,17 +43,78 @@ export class DataService {
     );
   }
 
-  // DEMO ONLY, you can find working methods below
   addIssue(issue: Issue): void {
     this.dialogData = issue;
+    console.log(this.dialogData);
   }
+  addItem(issue: Issue): void {
+    this.httpClient.post(this.API_URL, issue).subscribe(data => {
+      this.dialogData = data;
+      this.issue = this.dialogData;
+
+      console.log(this.dialogData);
+    },
+      (err: HttpErrorResponse) => {
+        console.log('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);
+      });
+  }
+  // addIssue(issue: Issue): void {
+
+  //   this.httpClient.post(this.API_URL, issue, this.httpOptions).subscribe(data => {
+  //     this.dialogData = issue;
+  //     console.log(this.dialogData);
+
+  //     alert('Successfully added');
+  //   },
+  //     (err: HttpErrorResponse) => {
+  //       console.log('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);
+  //     });
+
+  // }
+  // addIssue(issue: Issue): void {
+  //   this.httpClient.post(this.API_URL, issue, this.httpOptions).subscribe(data => {
+  //     this.dialogData = issue;
+  //     console.log(this.dialogData);
+
+  //     alert('Successfully added');
+  //   },
+  //     (err: HttpErrorResponse) => {
+  //       console.log('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);
+  //     });
+  // }
 
   updateIssue(issue: Issue): void {
     this.dialogData = issue;
   }
+  updateItem(issue: Issue): void {
+    this.httpClient.put(this.API_URL + issue._id, issue).subscribe(data => {
+      this.dialogData = data;
+      this.issue = this.dialogData;
 
-  deleteIssue(id: number): void {
-    console.log(id);
+    },
+      (err: HttpErrorResponse) => {
+        console.log('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);
+      }
+    );
+  }
+
+  deleteIssue(_id: number): void {
+    this.httpClient.delete(this.API_URL + _id).subscribe(data => {
+    },
+      (err: HttpErrorResponse) => {
+        console.log('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);
+      }
+    );
+  }
+
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
   }
 }
 

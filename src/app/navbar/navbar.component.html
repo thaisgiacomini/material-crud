@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row gutters">
+        <div class="col-lg-2">
+
+            <img class="img_menu" src="../../assets/img/logo.png" alt="" />
+        </div>
+        <div class="col-10 text-right">
+            <button mat-icon-button color="accent">
+                <button mat-icon-button color="primary">
+                    <mat-icon aria-label="help_outline">help_outline</mat-icon>
+                </button>
+            </button>
+            <div ngbDropdown class=" d-inline-block">
+                <button class="btn-menu" id="dropdownBasic1" ngbDropdownToggle>
+                    <img class="img_menu" src="../../assets/img/menu.png" class="img-menu" alt="" />
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <button ngbDropdownItem>Action - 1</button>
+                    <button ngbDropdownItem>Another Action</button>
+                    <button ngbDropdownItem>Something else is here</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

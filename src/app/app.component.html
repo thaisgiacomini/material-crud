@@ -1,144 +1,118 @@
-<div class="container-fluid no-gutters">
-  <mat-toolbar color="primary-background">
-    <img class="img" src="../assets/img/logo.png" alt="" />
-    <span class="spacer"></span>
+<div class="container-fluid nav-bar no-gutters">
+  <app-navbar></app-navbar>
 
-      <img class="img_menu" src="../assets/img/menu.png" alt="" />
-
-    <!-- Reload data:
-    <button mat-icon-button (click)="refresh()">
-      <mat-icon>refresh</mat-icon>
-    </button> -->
-  </mat-toolbar>
-
-
-
+</div>
 
 <div class="container">
-<!-- <app-edit></app-edit> -->
+  <!-- <app-edit></app-edit> -->
 </div>
 <div class="container">
-<div class="row">
-<div class="col-lg-12">
-  <div class="form">
-    <mat-form-field floatPlaceholder="never" color="accent">
-      <input matInput #filter placeholder="Filter issues" />
-    </mat-form-field>
-  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="form" style="display:none">
+        <mat-form-field floatPlaceholder=" never" color="accent">
+          <input matInput #filter placeholder="Filter issues" />
+        </mat-form-field>
+      </div>
 
-  <mat-table #table [dataSource]="dataSource" matSort class="">
-    ng update @angular/cli @angular/core
+      <mat-table #table [dataSource]="dataSource" matSort>
 
-    <!-- ID Column -->
-    <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
-      <mat-cell *matCellDef="let row; let i = index">{{ i + 1 }}</mat-cell>
-    </ng-container>
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+          <mat-cell *matCellDef="let row; let i = index">{{ i + 1}}</mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="empresa">
-      <mat-header-cell *matHeaderCellDef mat-sort-header
-        >Empresa</mat-header-cell
-      >
-      <mat-cell *matCellDef="let row"> {{ row.empresa }}</mat-cell>
-    </ng-container>
 
-    <ng-container matColumnDef="tarifa">
-      <mat-header-cell *matHeaderCellDef mat-sort-header
-        >Tarifa</mat-header-cell
-      >
-      <mat-cell *matCellDef="let row"> {{ row.tarifa }}</mat-cell>
-    </ng-container>
 
-    <ng-container matColumnDef="plano">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Plano</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.plano }}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="cnpj">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>cnpj</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.cnpj }}</mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="empresa">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Empresa</mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <div>
+              <b>
+                <p class="p-table">{{ row?.empresa }}</p>
+              </b>
+              <p class="p-table">{{ row?.cnpj }}</p>
+            </div>
+          </mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="vplano">
-      <mat-header-cell *matHeaderCellDef mat-sort-header
-        >Valor plano</mat-header-cell
-      >
-      <mat-cell *matCellDef="let row"> {{ row.vplano }}</mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="tarifa">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Tarifa</mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{ row?.tarifa }}</mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="minutos">
-      <mat-header-cell *matHeaderCellDef mat-sort-header
-        >minutos</mat-header-cell
-      >
-      <mat-cell *matCellDef="let row"> {{ row.minutos }}</mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="plano">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Plano</mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{ row?.plano }}</mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="created_at">
-      <mat-header-cell *matHeaderCellDef mat-sort-header
-        >Created at</mat-header-cell
-      >
-      <mat-cell *matCellDef="let row"> {{ row.created_at }}</mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="vplano">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Valor plano</mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{ row?.vplano }}</mat-cell>
+        </ng-container>
 
-    <!-- actions -->
-    <ng-container matColumnDef="actions">
-      <mat-header-cell *matHeaderCellDef>
-        <button mat-icon-button color="primary" (click)="addNew()">
-          <mat-icon aria-label="Example icon-button with a heart icon"
-            >add</mat-icon
-          >
-        </button>
-      </mat-header-cell>
+        <ng-container matColumnDef="minutos">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>minutos</mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{ row?.minutos }}</mat-cell>
+        </ng-container>
 
-      <mat-cell *matCellDef="let row; let i = index">
-        <button
-          mat-icon-button
-          color="accent"
-          (click)="
+        <ng-container matColumnDef="adesao">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Data de Adesão</mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{ row?.adesao | date:'dd/MM/yyyy' }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="envio">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Data de Envio</mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{ row?.envio | date:'dd/MM/yyyy' }}</mat-cell>
+        </ng-container>
+
+        <!-- actions -->
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef>
+            <button mat-icon-button color="primary" (click)="addNew()">
+              <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+            </button>
+          </mat-header-cell>
+
+          <mat-cell *matCellDef="let row; let i = index">
+            <button mat-icon-button color="accent" (click)="
             startEdit(
               i,
               row.id,
+              row._id,
               row.empresa,
               row.tarifa,
               row.plano,
               row.cnpj,
               row.vplano,
               row.minutos,
-              row.created_at
+              row.envio,
+              row.adesao
             )
-          "
-        >
-          <mat-icon aria-label="Edit">edit</mat-icon>
-        </button>
+          ">
+              <mat-icon aria-label="Edit">edit</mat-icon>
+            </button>
 
-        <button
-          mat-icon-button
-          color="accent"
-          (click)="deleteItem(i, row.id, row.empresa, row.tarifa, row.plano)"
-        >
-          <mat-icon aria-label="Delete">delete</mat-icon>
-        </button>
-      </mat-cell>
-    </ng-container>
+            <button mat-icon-button color="accent" (click)="deleteItem(  i,
+              row.id,
+              row._id
+                )">
+              <mat-icon aria-label="Delete">delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-  </mat-table>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
 
-  <div
-    class="no-results"
-    [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'"
-  >
-    No results
+      <div class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+        No results
+      </div>
+
+      <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10"
+        [pageSizeOptions]="[5, 10, 25, 100]">
+      </mat-paginator>
+    </div>
   </div>
-
-  <mat-paginator
-    #paginator
-    [length]="dataSource.filteredData.length"
-    [pageIndex]="0"
-    [pageSize]="10"
-    [pageSizeOptions]="[5, 10, 25, 100]"
-  >
-  </mat-paginator>
-</div>
-</div></div>
 </div>

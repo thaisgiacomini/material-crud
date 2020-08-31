@@ -1,0 +1,23 @@
+.img {
+  width: 5%;
+}
+.img_menu {
+  width: 60%;
+}
+.gutters {
+  padding: 1%;
+}
+.btn-menu:focus {
+  outline: none;
+  border: none;
+}
+.btn-menu {
+  width: 150px;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+}
+.img-menu {
+  width: 100%;
+}
