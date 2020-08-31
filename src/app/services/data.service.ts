@@ -19,8 +19,10 @@ export class DataService {
 
 
   constructor(private httpClient: HttpClient) { }
+
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'http://localhost:4242/' })
+ 
   };
 
   get data(): Issue[] {
@@ -45,14 +47,13 @@ export class DataService {
 
   addIssue(issue: Issue): void {
     this.dialogData = issue;
-    console.log(this.dialogData);
   }
   addItem(issue: Issue): void {
-    this.httpClient.post(this.API_URL, issue).subscribe(data => {
+    this.httpClient.post(this.API_URL, issue, this.httpOptions).subscribe(data => {
+      console.log(data)
       this.dialogData = data;
       this.issue = this.dialogData;
 
-      console.log(this.dialogData);
     },
       (err: HttpErrorResponse) => {
         console.log('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);
@@ -83,13 +84,14 @@ export class DataService {
   //     });
   // }
 
+  // updateIssue(issue: Issue): void {
+  //   this.dialogData = issue;
+  // }
   updateIssue(issue: Issue): void {
-    this.dialogData = issue;
-  }
-  updateItem(issue: Issue): void {
     this.httpClient.put(this.API_URL + issue._id, issue).subscribe(data => {
-      this.dialogData = data;
-      this.issue = this.dialogData;
+     
+          this.dialogData = issue;
+
 
     },
       (err: HttpErrorResponse) => {

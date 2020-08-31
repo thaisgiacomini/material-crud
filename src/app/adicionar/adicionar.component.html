@@ -1,55 +1,65 @@
 <div class="container">
-  <div class="col-lg-12">
-    <h3 mat-dialog-title>Adicionar Nova Solicitação</h3>
-    <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
-      <div class="form">
+<div class="row">
+    <div class="col-lg-12">
+        <h3 mat-dialog-title>Adicionar Nova Solicitação</h3>
+    </div>
+ </div>
+
+   
+    <div class="col-lg-9" >
+    <div class="row">
+     <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm" class="form-group">
+      <div class="col-lg-3">
         <mat-form-field color="accent">
           <input matInput placeholder="Empresa" [(ngModel)]="data.empresa" name="empresa" required />
         </mat-form-field>
       </div>
 
-      <div class="form">
+      <div class="col-lg-3">
         <mat-form-field color="accent">
           <input matInput placeholder="Tarifa" [(ngModel)]="data.tarifa" name="tarifa" />
         </mat-form-field>
       </div>
-      <div class="form">
+      <div class="col-lg-3">
         <mat-form-field color="accent">
           <input matInput placeholder="Plano" [(ngModel)]="data.plano" name="plano" />
         </mat-form-field>
       </div>
-      <div class="form">
+      <div class="col-lg-3">
         <mat-form-field color="accent">
           <input matInput placeholder="CNPJ" [(ngModel)]="data.cnpj" name="cnpj" required />
         </mat-form-field>
       </div>
-      <div class="form">
+      <div class="col-lg-3">
         <mat-form-field color="accent">
           <input matInput placeholder="Valor Plano" [(ngModel)]="data.vplano" name="vplano" />
         </mat-form-field>
       </div>
-      <div class="form">
+      <div class="col-lg-3">
         <mat-form-field color="accent">
           <input matInput placeholder="Minutos" [(ngModel)]="data.minutos" name="minutos" />
         </mat-form-field>
       </div>
-      <div class="form">
+      <div class="col-lg-3">
         <mat-form-field color="accent">
           <input matInput placeholder="Data Adesao" type="date" [(ngModel)]="data.adesao" name="adesao" />
         </mat-form-field>
       </div>
-      <div class="form">
+      <div class="col-lg-3">
         <mat-form-field color="accent">
           <input matInput placeholder="Data Envio" type="date" [(ngModel)]="data.envio" name="envio" />
         </mat-form-field>
       </div>
       <div mat-dialog-actions>
-        <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"
+        <button mat-button [type]="submit" [disabled]="!formControl.valid"
           (click)="confirmAdd()">
           Salvar
         </button>
         <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
       </div>
-    </form>
-  </div>
-</div>
+       </form>
+      </div>
+      </div>
+   
+    
+   </div>

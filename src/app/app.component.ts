@@ -73,7 +73,6 @@ export class AppComponent implements OnInit {
 
   startEdit(
     i: number,
-    id: number,
     _id: number,
     empresa: string,
     tarifa: string,
@@ -89,10 +88,8 @@ export class AppComponent implements OnInit {
     this._id = _id;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
-    console.log(this.index);
     const dialogRef = this.dialog.open(EditDialogComponent, {
       data: {
-        id: id,
         _id: _id,
         empresa: empresa,
         tarifa: tarifa,
@@ -107,16 +104,15 @@ export class AppComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {
-        // When using an edit things are little different, firstly we find record inside DataService by id
         const foundIndex = this.novaDatabase.dataChange.value.findIndex(
           (x) => x._id === this._id
+          
         );
-        // Then you update that record using data from dialogData (values you enetered)
         this.novaDatabase.dataChange.value[
           foundIndex
         ] = this.dataService.getDialogData();
-        // And lastly refresh table
         this.refreshTable();
+        console.log(this.novaDatabase.dataChange.value)
       }
     });
   }
@@ -161,7 +157,6 @@ export class AppComponent implements OnInit {
 
         this.novaDatabase.dataChange.value.splice(foundIndex, 1);
         this.refreshTable();
-        console.log(this._id)
       }
     });
   }

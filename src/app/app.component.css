@@ -33,7 +33,9 @@
   font-size: 14px;
   font-style: italic;
 }
-
+table {
+  width: 100%;
+}
 .mat-cell:nth-child(1),
 .mat-header-cell:nth-child(1) {
   flex: 0 0 6%;
@@ -62,3 +64,8 @@
 .container-fluid {
   background-color: #f7edeb;
 }
+button:focus
+ {
+  outline: none !important;
+}
+

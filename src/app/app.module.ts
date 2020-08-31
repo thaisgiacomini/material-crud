@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './navbar/navbar.component';
+import { AdicionarComponent } from './adicionar/adicionar.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     AddDialogComponent,
     EditDialogComponent,
     DeleteDialogComponent,
-    NavbarComponent],
+    NavbarComponent,
+    AdicionarComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -49,23 +51,25 @@ import { NavbarComponent } from './navbar/navbar.component';
   entryComponents: [
     AddDialogComponent,
     EditDialogComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    AdicionarComponent
   ],
   providers: [
     DataService,
 
-    //     { 
-    // provide: MatDialogRef,
-    // useValue: []
-    //  }, 
-    // { 
-    // provide: MAT_DIALOG_DATA, 
-    // useValue: [] 
-    // }
+        { 
+    provide: MatDialogRef,
+    useValue: []
+     }, 
+    { 
+    provide: MAT_DIALOG_DATA, 
+    useValue: [] 
+    }
   ],
   bootstrap: [AppComponent],
   exports: [AddDialogComponent,
     EditDialogComponent,
-    DeleteDialogComponent]
+    DeleteDialogComponent, 
+    AdicionarComponent]
 })
 export class AppModule { }

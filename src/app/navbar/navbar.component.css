@@ -17,7 +17,52 @@
   margin: 0;
   padding: 0;
   background-color: transparent;
+ 
 }
+.dropdown{
+  float:left;
+} 
 .img-menu {
   width: 100%;
+}
+.btn-nav {
+  margin: 0 30px;
+  width: 100px;
+  border-right: 1px solid #000;
+  border-radius: 0;
+  padding-right: 15px;
+}
+.btn-nav:focus {
+  outline: none;
+  border: none;
+}
+.rounded_btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: blue;
+  float: left;
+}
+.circle-nav p {
+  margin-top: 0;
+  padding-top: 15px;
+}
+.dropdown-toggle::after {
+  display: inline-block;
+  margin-left: 4em;
+  margin-top: -30px;
+  content: "";
+  border-top: 0.3em solid;
+  border-right: 0.3em solid transparent;
+  border-bottom: 0;
+  border-left: 0.3em solid transparent;
+  position: absolute;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-column-actions {
+  text-align: right;
 }

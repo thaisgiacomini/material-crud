@@ -29,3 +29,14 @@ body {
 .container > * {
   width: 100%;
 }
+button:focus,
+.mat-icon-button:focus,
+.mat-sort-header-button:focus {
+  outline: none !important;
+}
+button:not(:disabled),
+[type="button"]:not(:disabled),
+[type="reset"]:not(:disabled),
+[type="submit"]:not(:disabled) {
+  outline: none;
+}

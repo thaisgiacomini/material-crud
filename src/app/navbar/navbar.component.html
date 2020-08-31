@@ -1,25 +1,36 @@
 <div class="container">
-    <div class="row gutters">
-        <div class="col-lg-2">
-
-            <img class="img_menu" src="../../assets/img/logo.png" alt="" />
+  <div class="row gutters">
+  
+    <div class="col-lg-2">
+      <a href="#"
+        ><img class="img_menu" src="../../assets/img/logo.png" alt=""
+      /></a>
+    </div>
+    <div class="col-lg-10 text-right">
+     <div class="row" style="float:right;">
+    <div class="col-4">
+      <button mat-icon-button color="primary" class="btn-nav">
+        <mat-icon aria-label="help_outline">help_outline</mat-icon>
+        Ajuda
+      </button>
+       
         </div>
-        <div class="col-10 text-right">
-            <button mat-icon-button color="accent">
-                <button mat-icon-button color="primary">
-                    <mat-icon aria-label="help_outline">help_outline</mat-icon>
-                </button>
-            </button>
-            <div ngbDropdown class=" d-inline-block">
-                <button class="btn-menu" id="dropdownBasic1" ngbDropdownToggle>
-                    <img class="img_menu" src="../../assets/img/menu.png" class="img-menu" alt="" />
-                </button>
-                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                    <button ngbDropdownItem>Action - 1</button>
-                    <button ngbDropdownItem>Another Action</button>
-                    <button ngbDropdownItem>Something else is here</button>
-                </div>
+                
+     <div class="col-8">
+      <div class="rounded_btn"></div>
+       <div ngbDropdown class="d-inline-block">
+        <button class="btn-menu" id="dropdownBasic1" ngbDropdownToggle>
+          <div class="circle-nav">
+            <p class="col-6">Arthur Nogueira</p>
+          </div>
+        </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button ngbDropdownItem>Profile</button>
+            <button ngbDropdownItem>Configurações</button>
             </div>
         </div>
+      </div>
     </div>
+    </div>
+  </div>
 </div>
