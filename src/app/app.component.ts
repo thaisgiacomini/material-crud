@@ -106,7 +106,7 @@ export class AppComponent implements OnInit {
       if (result === 1) {
         const foundIndex = this.novaDatabase.dataChange.value.findIndex(
           (x) => x._id === this._id
-          
+
         );
         this.novaDatabase.dataChange.value[
           foundIndex

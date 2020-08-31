@@ -12,7 +12,7 @@ import { Issue } from '../models/issue';
 })
 export class AdicionarComponent {
 
- constructor(public dialogRef: MatDialogRef<AdicionarComponent>,
+  constructor(public dialogRef: MatDialogRef<AdicionarComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Issue,
     public dataService: DataService) { }
 
@@ -22,8 +22,6 @@ export class AdicionarComponent {
     // Validators.email,
   ]);
 
-   ngOnInit(): void {
-  }
 
   getErrorMessage() {
     return this.formControl.hasError('required') ? 'Campo Obrigatório' :
@@ -38,16 +36,23 @@ export class AdicionarComponent {
     // this.dialogRef.close();
   }
 
-  public confirmAdd(): void {
+  public confirmAdd() {
+    const object = {
+      _id: this.data._id,
+      envio: this.data.envio,
+      adesao: this.data.adesao,
+      empresa: this.data.empresa,
+      plano: this.data.plano,
+      cnpj: this.data.cnpj,
+      tarifa: this.data.tarifa,
+      vplano: this.data.vplano,
+      minutos: this.data.minutos
+    };
+
+    this.dataService.addItem(object);
     this.dataService.addIssue(this.data);
-    this.dataService.addItem(this.data);
 
   }
-
-
-
-
- 
 
 }
 
